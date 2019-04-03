@@ -154,8 +154,8 @@ py37-django22-redis
 $ pip install -U pip setuptools wheel twine
 $ rm -rf dist/ build/
 $ python setup.py sdist bdist_wheel
-$ twine -r test upload test/*
-$ twine upload test/*
+$ twine upload -r test dist/*
+$ twine upload dist/*
 ```
 
 
@@ -165,4 +165,9 @@ This code is largely based off the work done by @ryanhiebert in [tox-travis][1].
 Without his efforts, it would have taken significantly more time to write and
 test this package.
 
+## License
+
+See: [LICENSE][2]
+
 [1]: https://github.com/tox-dev/tox-travis
+[2]: https://github.com/rpkilby/tox-factor/blob/master/LICENSE
