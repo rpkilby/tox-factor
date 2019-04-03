@@ -65,15 +65,7 @@ jobs:
 
 workflows:
   version: 2
-  test:
-    triggers:
-      - schedule:
-          # 8/9 AM PST/PDT every Monday
-          cron: "0 16 * * 1"
-          filters:
-            branches:
-              only:
-                - master
+  commit: &test-workflow
     jobs:
       - lint
       - dist:
@@ -95,3 +87,14 @@ workflows:
       - test-py27:
           requires:
             - lint
+
+  weekly:
+    <<: *test-workflow
+    triggers:
+      - schedule:
+          # 8/9 AM PST/PDT every Monday
+          cron: "0 16 * * 1"
+          filters:
+            branches:
+              only:
+                - master
