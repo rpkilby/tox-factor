@@ -10,14 +10,13 @@ aliases:
       name: install dependencies & setup environment
       command: |
         virtualenv venv
-        source venv/bin/activate
-        pip install -U pip setuptools wheel tox
+        venv/bin/pip install -U pip setuptools wheel tox
 
   - &test-steps
     steps:
       - checkout
       - *environ
-      - run: tox
+      - run: venv/bin/tox
       - codecov/upload:
         file: {{ coverage_report_filepath }}
 
@@ -26,7 +25,7 @@ jobs:
     steps:
       - checkout
       - *environ
-      - run: tox -e isort,lint
+      - run: venv/bin/tox -e isort,lint
     docker:
       - image: circleci/python:3.7
 
@@ -35,9 +34,9 @@ jobs:
       - checkout
       - *environ
       - run: |
-          python setup.py bdist_wheel
-          tox -e dist --installpkg ./dist/tox_factor-*.whl
-          tox -e dist
+          venv/bin/python setup.py bdist_wheel
+          venv/bin/tox -e dist --installpkg ./dist/tox_factor-*.whl
+          venv/bin/tox -e dist
     docker:
       - image: circleci/python:3.7
 
