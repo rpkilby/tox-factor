@@ -1,16 +1,12 @@
 version: 2.1
 
-orbs:
-  codecov: codecov/codecov@1.0.4
-
-
 aliases:
   - &environ
     run:
       name: install dependencies & setup environment
       command: |
         virtualenv venv
-        venv/bin/pip install -U pip setuptools wheel tox coverage
+        venv/bin/pip install -U pip setuptools wheel tox codecov
 
   - &test-steps
     steps:
@@ -18,8 +14,7 @@ aliases:
       - *environ
       - run: venv/bin/tox
       - run: venv/bin/coverage report
-      - codecov/upload:
-          file: .coverage
+      - run: venv/bin/codecov
 
 jobs:
   lint:
