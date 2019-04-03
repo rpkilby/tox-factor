@@ -6,22 +6,24 @@ aliases:
       name: install dependencies & setup environment
       command: |
         virtualenv venv
-        venv/bin/pip install -U pip setuptools wheel tox codecov
+        echo "source /home/circleci/project/venv/bin/activate" >> $BASH_ENV
+        pip install -U pip setuptools wheel tox codecov
+      # The above ensures that venv is activated for every step
 
   - &test-steps
     steps:
       - checkout
       - *environ
-      - run: venv/bin/tox
-      - run: venv/bin/coverage report
-      - run: venv/bin/codecov
+      - run: tox
+      - run: coverage report
+      - run: codecov
 
 jobs:
   lint:
     steps:
       - checkout
       - *environ
-      - run: venv/bin/tox -e isort,lint
+      - run: tox -e isort,lint
     docker:
       - image: circleci/python:3.7
 
@@ -30,9 +32,9 @@ jobs:
       - checkout
       - *environ
       - run: |
-          venv/bin/python setup.py bdist_wheel
-          venv/bin/tox -e dist --installpkg ./dist/tox_factor-*.whl
-          venv/bin/tox -e dist
+          python setup.py bdist_wheel
+          tox -e dist --installpkg ./dist/tox_factor-*.whl
+          tox -e dist
     docker:
       - image: circleci/python:3.7
 
