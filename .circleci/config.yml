@@ -3,30 +3,38 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.4
 
-test-steps: &test-steps
-  steps:
-    - checkout
-    - run: |
-        pip install --user -U pip setuptools wheel tox
-        tox
-    - codecov/upload:
-      file: {{ coverage_report_filepath }}
+
+aliases:
+  - &environ
+    run:
+      name: install dependencies & setup environment
+      command: |
+        virtualenv venv
+        source venv/bin/activate
+        pip install -U pip setuptools wheel tox
+
+  - &test-steps
+    steps:
+      - checkout
+      - *environ
+      - run: tox
+      - codecov/upload:
+        file: {{ coverage_report_filepath }}
 
 jobs:
   lint:
     steps:
       - checkout
-      - run: |
-          pip install --user -U pip setuptools wheel tox
-          tox -e isort,lint
+      - *environ
+      - run: tox -e isort,lint
     docker:
       - image: circleci/python:3.7
 
   dist:
     steps:
       - checkout
+      - *environ
       - run: |
-          pip install --user -U pip setuptools wheel tox
           python setup.py bdist_wheel
           tox -e dist --installpkg ./dist/tox_factor-*.whl
           tox -e dist
