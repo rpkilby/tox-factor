@@ -10,13 +10,14 @@ aliases:
       name: install dependencies & setup environment
       command: |
         virtualenv venv
-        venv/bin/pip install -U pip setuptools wheel tox
+        venv/bin/pip install -U pip setuptools wheel tox coverage
 
   - &test-steps
     steps:
       - checkout
       - *environ
       - run: venv/bin/tox
+      - run: venv/bin/coverage report
       - codecov/upload:
           file: .coverage
 
