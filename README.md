@@ -1,6 +1,6 @@
 # tox-factor
 
-[![CircleCI](https://circleci.com/gh/rpkilby/tox-factor.svg?style=svg)](https://circleci.com/gh/rpkilby/tox-factor)
+[![CircleCI](https://circleci.com/gh/rpkilby/tox-factor.svg?style=shield)](https://circleci.com/gh/rpkilby/tox-factor)
 [![codecov](https://codecov.io/gh/rpkilby/tox-factor/branch/master/graph/badge.svg)](https://codecov.io/gh/rpkilby/tox-factor)
 [![version](https://img.shields.io/pypi/v/tox-factor.svg)](https://pypi.python.org/pypi/tox-factor)
 [![python](https://img.shields.io/pypi/pyversions/tox-factor.svg)](https://pypi.org/project/tox-factor/)
