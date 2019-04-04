@@ -26,7 +26,6 @@ def normalize_factors(factors):
         .format(cls=type(factors).__name__))
 
     flattened = [
-        f.strip() for f in factors
     ]
 
     # Remove empty strings
