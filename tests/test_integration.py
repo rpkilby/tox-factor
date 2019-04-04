@@ -17,7 +17,7 @@ class ToxFactorIntegrationTests(ToxTestCase):
             self.tox_envlist(),
             [
                 'py36-django20', 'py36-django21',
-                'py37-django20', 'py37-django21'
+                'py37-django20', 'py37-django21',
             ],
         )
 
@@ -25,7 +25,7 @@ class ToxFactorIntegrationTests(ToxTestCase):
         self.assertEqual(
             self.tox_envlist(['-f', 'py37']),
             [
-                'py37-django20', 'py37-django21'
+                'py37-django20', 'py37-django21',
             ],
         )
 
@@ -33,7 +33,23 @@ class ToxFactorIntegrationTests(ToxTestCase):
         self.assertEqual(
             self.tox_envlist(['--factor', 'py37']),
             [
-                'py37-django20', 'py37-django21'
+                'py37-django20', 'py37-django21',
+            ],
+        )
+
+    def test_string_list(self):
+        self.assertEqual(
+            self.tox_envlist(['--factor', 'py37,lint']),
+            [
+                'py37-django20', 'py37-django21', 'lint',
+            ],
+        )
+
+    def test_append_list(self):
+        self.assertEqual(
+            self.tox_envlist(['--factor', 'py37', '--factor', 'isort,lint']),
+            [
+                'py37-django20', 'py37-django21', 'lint', 'isort',
             ],
         )
 
@@ -42,6 +58,15 @@ class ToxFactorIntegrationTests(ToxTestCase):
         self.assertEqual(
             self.tox_envlist(),
             [
-                'py37-django20', 'py37-django21'
+                'py37-django20', 'py37-django21',
+            ],
+        )
+
+    @mock.patch.dict('os.environ', {'TOXFACTOR': 'py37'})
+    def test_argument_overrides_environment_variable(self):
+        self.assertEqual(
+            self.tox_envlist(['--factor', 'lint']),
+            [
+                'lint',
             ],
         )
