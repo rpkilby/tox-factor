@@ -1,0 +1,22 @@
+build: false  # Not a C# project
+
+branches:
+  only:
+    - master
+
+environment:
+  matrix:
+    - TOXENV: py27
+    - TOXENV: py35
+    - TOXENV: py36
+    - TOXENV: py37
+
+matrix:
+  fast_finish: true
+
+install:
+  - C:\Python37\python -m pip install -U six setuptools wheel
+  - C:\Python37\python -m pip install -U tox
+
+test_script:
+  - C:\Python37\scripts\tox
