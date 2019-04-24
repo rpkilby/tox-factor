@@ -30,10 +30,16 @@ class ToxTestCase(TestCase):
             generated during the test case class setup.
         config: The parsed ini tox config. This is created during the test case
             class setup.
+        setup_contents: The contents that will be written to the package setup
+            module.
+        setup_filepath: The full path of the temporary setup module. This is
+            generated during the test case class setup.
     """
 
     ini_contents = None
     ini_filename = 'tox.ini'
+
+    setup_contents = None
 
     @classmethod
     def setUpClass(cls):
@@ -53,6 +59,12 @@ class ToxTestCase(TestCase):
             ini_file.write(dedent(cls.ini_contents))
 
         cls.config = IniConfig(cls.ini_filepath)
+
+        # Create package setup module
+        cls.setup_filepath = os.path.join(cls._temp_dir, 'setup.py')
+        if cls.setup_contents is not None:
+            with open(cls.setup_filepath, 'w') as setup_file:
+                setup_file.write(dedent(cls.setup_contents))
 
     @classmethod
     def tearDownClass(cls):
