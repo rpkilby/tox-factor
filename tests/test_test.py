@@ -27,7 +27,9 @@ class ToxTestCaseTests(unittest.TestCase):
             """
 
             def runTest(self):
-                pass  # Prevents an error in Python 2
+                # fixes a Python 2 compatibility issue when instantiating a
+                # test case outside of a test suite
+                pass
 
         testcase = Dummy()
         testcase.setUpClass()

@@ -60,11 +60,6 @@ class ToxTestCase(TestCase):
 
         super(ToxTestCase, cls).tearDownClass()
 
-    # def runTest(self):
-    #     # This fixes a Python 2 compatibility issue when instantiating test
-    #     # cases outside of a test suite.
-    #     pass
-
     def _tox_call(self, arguments):
         proc = subprocess.Popen(
             arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
