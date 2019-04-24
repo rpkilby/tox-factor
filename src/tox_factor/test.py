@@ -6,6 +6,7 @@ from textwrap import dedent
 from unittest import TestCase
 
 from py.iniconfig import IniConfig
+from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
 
 
 class ToxTestCase(TestCase):
@@ -61,8 +62,13 @@ class ToxTestCase(TestCase):
         super(ToxTestCase, cls).tearDownClass()
 
     def _tox_call(self, arguments):
+        # Remove TOX_PARALLEL_ENV from the subprocess environment variables.
+        # See: https://github.com/tox-dev/tox/issues/1275
+        env = os.environ.copy()
+        env.pop(TOX_PARALLEL_ENV, None)
+
         proc = subprocess.Popen(
-            arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            arguments, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
         stdout, stderr = proc.communicate()
 
         return proc.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
