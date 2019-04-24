@@ -1,6 +1,7 @@
 import os
 
 import tox
+from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
 
 from .factor import get_envlist
 
@@ -44,7 +45,10 @@ def tox_addoption(parser):
 
 @tox.hookimpl
 def tox_configure(config):
-    ini = config._cfg
+    # Run on the main tox process but not in the parallelized subprocesses,
+    # where the subprocess has been delegated a specific TOX_PARALLEL_ENV.
+    if TOX_PARALLEL_ENV in os.environ:
+        return
 
     # Do not match factors when tox env is specified
     if 'TOXENV' in os.environ or config.option.env:
@@ -58,4 +62,4 @@ def tox_configure(config):
 
     if config.option.factor:
         factors = normalize_factors(config.option.factor)
-        config.envlist = get_envlist(ini, factors)
+        config.envlist = get_envlist(config._cfg, factors)
