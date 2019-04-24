@@ -30,7 +30,7 @@ jobs:
       - checkout
       - *environ
       - *install
-      - run: tox -e isort,lint
+      - run: tox -e isort,lint,readme
     docker:
       - image: circleci/python:3.7
 
