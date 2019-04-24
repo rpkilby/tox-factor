@@ -1,6 +1,8 @@
 import mock
 from unittest import TestCase
 
+from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
+
 from tox_factor.hooks import normalize_factors, tox_configure
 
 
@@ -114,6 +116,16 @@ class ToxConfigureHookTests(TestCase):
         config = mock.Mock()
         config.option.env = 'test'
         config.option.factor = 'test'
+
+        tox_configure(config)
+
+        get_envlist.assert_not_called()
+
+    @mock.patch('tox_factor.hooks.get_envlist')
+    @mock.patch.dict('os.environ', {TOX_PARALLEL_ENV: 'test'})
+    def test_tox_parallel_env_envvar_noop(self, get_envlist):
+        # mimics: `TOX_PARALLEL_ENV=test tox`
+        config = mock.Mock()
 
         tox_configure(config)
 
