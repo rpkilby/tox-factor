@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v0.1.1 (2019-06-06)
+-------------------
+
+- #6 Fix "tox -l" use by overriding the default envlist
+
 v0.1.0 (2019-04-23)
 -------------------
 
