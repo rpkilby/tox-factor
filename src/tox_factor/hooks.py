@@ -63,3 +63,8 @@ def tox_configure(config):
     if config.option.factor:
         factors = normalize_factors(config.option.factor)
         config.envlist = get_envlist(config._cfg, factors)
+
+        # TEMP: setting config.envlist_default fixes tox -l usage (and by
+        # extension, the test suite). The longterm fix is to add a new option
+        # to tox (e.g., tox -ls) that lists the selected envs (config.envlist).
+        config.envlist_default = config.envlist
