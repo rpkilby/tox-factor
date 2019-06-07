@@ -15,7 +15,7 @@ matrix:
   fast_finish: true
 
 install:
-  - C:\Python37\python -m pip install -U six setuptools wheel
+  - C:\Python37\python -m pip install -U pip virtualenv setuptools wheel six
   - C:\Python37\python -m pip install -U tox
 
 test_script:
