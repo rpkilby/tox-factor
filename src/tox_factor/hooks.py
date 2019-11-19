@@ -1,8 +1,8 @@
 import os
 
 import tox
-from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
 
+from .compat import TOX_PARALLEL_ENV
 from .factor import get_envlist
 
 
