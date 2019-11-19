@@ -6,7 +6,7 @@ from textwrap import dedent
 from unittest import TestCase
 
 from py.iniconfig import IniConfig
-from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
+from tox.config.parallel import ENV_VAR_KEY_PUBLIC as TOX_PARALLEL_ENV
 
 
 class ToxTestCase(TestCase):

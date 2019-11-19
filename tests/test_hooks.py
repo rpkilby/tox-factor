@@ -1,7 +1,7 @@
 import mock
 from unittest import TestCase
 
-from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
+from tox.config.parallel import ENV_VAR_KEY_PUBLIC as TOX_PARALLEL_ENV
 
 from tox_factor.hooks import normalize_factors, tox_configure
 
