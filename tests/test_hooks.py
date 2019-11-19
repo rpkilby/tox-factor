@@ -13,7 +13,7 @@ class NormalizeFactorsTests(TestCase):
 
         self.assertEqual(
             str(excinfo.exception),
-            "Expected `factors` list to be a list, got `NoneType`.",
+            'Expected `factors` list to be a list, got `NoneType`.',
         )
 
     def test_empty(self):
