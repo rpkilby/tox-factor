@@ -96,7 +96,7 @@ class ToxParallelIntegrationTests(ToxTestCase):
 
     def test_parallel_call(self):
         returncode, stdout, stderr = self.tox_call(
-            ['--parallel', 'auto', '--factor', 'lint,isort']
+            ['--parallel', 'auto', '--factor', 'lint,isort'],
         )
         self.assertEqual(returncode, 0, stderr)
         self.assertIn('lint: commands succeeded', stdout)

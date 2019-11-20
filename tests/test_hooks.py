@@ -1,8 +1,7 @@
 import mock
 from unittest import TestCase
 
-from tox.config.parallel import ENV_VAR_KEY as TOX_PARALLEL_ENV
-
+from tox_factor.compat import TOX_PARALLEL_ENV
 from tox_factor.hooks import normalize_factors, tox_configure
 
 
@@ -13,7 +12,7 @@ class NormalizeFactorsTests(TestCase):
 
         self.assertEqual(
             str(excinfo.exception),
-            "Expected `factors` list to be a list, got `NoneType`.",
+            'Expected `factors` list to be a list, got `NoneType`.',
         )
 
     def test_empty(self):
