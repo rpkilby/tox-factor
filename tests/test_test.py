@@ -1,6 +1,7 @@
 import unittest
 
 from tox_factor.test import ToxTestCase
+from sys import version_info
 
 
 class ToxTestCaseTests(unittest.TestCase):
@@ -92,4 +93,9 @@ class ToxTestCaseTests(unittest.TestCase):
             testcase.tearDownClass()
 
         self.assertNotEqual(returncode, 0)
-        self.assertIn('ERROR: No setup.py file found.', stdout)
+        if version_info[0] == 3 and version_info[1] >= 5 or \
+           version_info[0] == 2 and version_info[1] == 7:
+            self.assertIn('ERROR: No pyproject.toml or setup.py file found.',
+                          stdout)
+        else:
+            self.assertIn('ERROR: No setup.py file found.', stdout)
