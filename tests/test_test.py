@@ -92,4 +92,4 @@ class ToxTestCaseTests(unittest.TestCase):
             testcase.tearDownClass()
 
         self.assertNotEqual(returncode, 0)
-        self.assertIn('ERROR: No setup.py file found.', stdout)
+        self.assertIn('ERROR: No pyproject.toml or setup.py file found', stdout)
