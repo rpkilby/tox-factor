@@ -1,5 +1,6 @@
-import mock
 from unittest import TestCase
+
+import mock
 
 from tox_factor.compat import TOX_PARALLEL_ENV
 from tox_factor.hooks import normalize_factors, tox_configure
