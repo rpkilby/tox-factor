@@ -1,5 +1,4 @@
 import os
-
 import tox
 
 from .compat import TOX_PARALLEL_ENV

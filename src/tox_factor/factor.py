@@ -1,5 +1,4 @@
 import sys
-
 from tox.config import _split_env as split_env
 
 

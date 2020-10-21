@@ -2,10 +2,9 @@ import os
 import shutil
 import subprocess
 import tempfile
+from py.iniconfig import IniConfig
 from textwrap import dedent
 from unittest import TestCase
-
-from py.iniconfig import IniConfig
 
 from tox_factor.compat import TOX_PARALLEL_ENV
 
