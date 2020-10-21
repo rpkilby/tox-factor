@@ -127,14 +127,14 @@ class MatchEnvsTests(unittest.TestCase):
 # env_matches ##################################################################
 class EnvMatchesTests(unittest.TestCase):
     def test_exact(self):
-        self.assertTrue(factor.env_matches("py37", "py37"))
+        self.assertTrue(factor.env_matches('py37', 'py37'))
 
     def test_current_python_version(self):
         self.assertTrue(
             factor.env_matches(
-                "py{}{}".format(sys.version_info[0], sys.version_info[1]),
-                "py",
-            )
+                'py{}{}'.format(sys.version_info[0], sys.version_info[1]),
+                'py',
+            ),
         )
 
     def test_multiple_exact(self):

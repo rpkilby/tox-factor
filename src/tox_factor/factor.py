@@ -74,7 +74,7 @@ def match_envs(env_names, factors):
     ]
 
 
-current_python_factor = "py{}{}".format(sys.version_info[0], sys.version_info[1])
+current_python_factor = 'py{}{}'.format(sys.version_info[0], sys.version_info[1])
 
 
 def env_matches(env_name, factor):
@@ -102,10 +102,10 @@ def env_matches(env_name, factor):
     Returns:
         Whether the name matches the given factor(s).
     """
-    env_factors = set(env_name.split("-"))
-    factors = set(factor.split("-"))
-    if "py" in factors:
-        factors.remove("py")
+    env_factors = set(env_name.split('-'))
+    factors = set(factor.split('-'))
+    if 'py' in factors:
+        factors.remove('py')
         factors.add(current_python_factor)
 
     return factors.issubset(env_factors)
