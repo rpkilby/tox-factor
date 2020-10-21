@@ -38,6 +38,14 @@ all envs that match the given factor. The six `py37` builds could be ran with:
 $ tox -f py37
 ```
 
+Alternatively, if tox is installed with Python 3.7, you can run the `py37`
+builds by specifying just `py`, which matches against the installed version of
+Python:
+
+```shell
+$ tox -f py
+```
+
 In addition to ease of use when running tox locally, this is useful for some CI
 setups. For example, two common tox CI patterns are to either:
 
@@ -50,8 +58,8 @@ setups. For example, two common tox CI patterns are to either:
     `tox -e py37-django20-redis,py37-django20-memcached,...`
 
 For the latter case, this plugin eases maintenance of CI, as it could be
-shortened to `tox -f py37`. Additionally, take the following update to the above
-tox config:
+shortened to `tox -f py37` or `tox -f py`. Additionally, take the following
+update to the above tox config:
 
 ```ini
 [tox]
