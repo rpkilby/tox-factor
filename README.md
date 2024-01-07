@@ -11,6 +11,10 @@
 
 tox-factor enables running a subset of tox test envs, based on factor matching.
 
+> [!WARNING]  
+> tox-factor is compatible only with `tox<4`.
+> 
+> `tox>=4` include a `-f` flag built-in, tox-factor is not required. 
 
 ## Okay, but what does that *actually* mean?
 
