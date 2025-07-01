@@ -7,14 +7,14 @@
 [![python](https://img.shields.io/pypi/pyversions/tox-factor.svg)](https://pypi.org/project/tox-factor/)
 [![license](https://img.shields.io/pypi/l/tox-factor.svg)](https://pypi.python.org/pypi/tox-factor)
 
+> [!WARNING]
+> tox-factor has been archived as its features have been integrated into tox 4.
+>
+> tox-factor is **only** compatible with `tox~=3`.
+
 ## What is tox-factor?
 
 tox-factor enables running a subset of tox test envs, based on factor matching.
-
-> [!WARNING]  
-> tox-factor is compatible only with `tox<4`.
-> 
-> `tox>=4` include a `-f` flag built-in, tox-factor is not required. 
 
 ## Okay, but what does that *actually* mean?
 
